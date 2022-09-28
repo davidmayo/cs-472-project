@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    MapDisplay mapDisplay;
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        mapDisplay = FindObjectOfType<MapDisplay>();
-
-        // TODO
-        //mapDisplay.DrawMesh()
+        MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+        mapGenerator.GenerateMap();
     }
+    
 
     // Update is called once per frame
     void Update()
