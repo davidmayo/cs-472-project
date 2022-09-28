@@ -17,6 +17,6 @@ public class PlayerController : MonoBehaviour
 
         //characterController.Move(move * Time.deltaTime * Speed);
         //rigidBody.velocity = move * Time.deltaTime * Speed;
-        rigidBody.AddForce( move * Speed );
+        rigidBody.AddForce(move * Speed);
     }
 }
