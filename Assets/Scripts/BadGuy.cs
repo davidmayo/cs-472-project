@@ -8,19 +8,20 @@ using UnityEngine.SceneManagement;
 public class BadGuy : MonoBehaviour
 {
     Reset Lscript;
-    public Transform target;
-    NavMeshAgent nav;
+    private Transform Player;
+    private NavMeshAgent nav;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { //This code shows the bad guy that it will follow the player
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        nav.SetDestination(target.position);
+    {//This is so the bad guy is always update on the players location
+        nav.SetDestination(Player.position);
     }
 
     private void OnTriggerEnter(Collider collision)
