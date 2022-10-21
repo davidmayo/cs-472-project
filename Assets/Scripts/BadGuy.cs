@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class BadGuy : MonoBehaviour
 {
     Reset Lscript;
+    public GameObject camera;
     private Transform Player;
     private NavMeshAgent nav;
 
@@ -16,6 +17,8 @@ public class BadGuy : MonoBehaviour
     { //This code shows the bad guy that it will follow the player
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
+
+        Lscript = camera.GetComponent<Reset>();
     }
 
     // Update is called once per frame
@@ -24,13 +27,15 @@ public class BadGuy : MonoBehaviour
         nav.SetDestination(Player.position);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision col)
     {
-        if (collision.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             Lscript.ResetTheGame();
+            Debug.Log("Inside condition");
 
         }
+        Debug.Log("Outside condition");
     }
 }
 

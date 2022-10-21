@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         if (logicalMap is not null)
         {
-            Debug.Log($"POSITION: {logicalMap.GetGridCoordinate(this.transform).ToString()}");
+           // Debug.Log($"POSITION: {logicalMap.GetGridCoordinate(this.transform).ToString()}");
         }
     }
 }
