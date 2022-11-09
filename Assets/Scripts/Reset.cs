@@ -6,10 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Reset : MonoBehaviour
 {
-    public void ResetTheGame()
+    public void LoadGameOver()
     {
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Game Over");
+
+        print("button is working.");
+
+
+    }
+
+    public void LoadGame()
+    {
+
+        SceneManager.LoadScene("Start");
 
         print("button is working.");
 

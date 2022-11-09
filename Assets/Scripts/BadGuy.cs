@@ -31,7 +31,7 @@ public class BadGuy : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Lscript.ResetTheGame();
+            Lscript.LoadGameOver();
             Debug.Log("Inside condition");
 
         }
