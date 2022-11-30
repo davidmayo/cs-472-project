@@ -9,6 +9,11 @@ public class CameraFollows : MonoBehaviour
 
     public float height = 1f;
     public float distance = 2f;
+     public float SpeedH = 2.0f;
+    public float SpeedV = 2.0f;
+
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
 
     //Default distance between the target and thne player
     public Vector3 cameraOffset;
@@ -33,7 +38,7 @@ public class CameraFollows : MonoBehaviour
     void LateUpdate()
     {
         Vector3 newPosition = targetObject.transform.position + cameraOffset;
-        offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * smoothFactor, Vector3.up) * offsetX;
+        offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * smoothFactor, Vector3.up) * offsetX;
         offsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * smoothFactor, Vector3.right) * offsetY;
 
         //Slerp treats the vectors as directions rather points in space
@@ -43,5 +48,10 @@ public class CameraFollows : MonoBehaviour
         {
             transform.LookAt(targetObject);
         }
+
+        /*yaw += SpeedH * Input.GetAxis("Mouse X");
+        pitch -= SpeedV * Input.GetAxis("Mouse Y");
+        targetObject.transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);*/
+
     }
 }
