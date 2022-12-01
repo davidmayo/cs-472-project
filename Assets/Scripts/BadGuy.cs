@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class BadGuy : MonoBehaviour
 {
     Reset Lscript;
-    private GameObject camera;
+    //private GameObject camera;
     public Transform Player;
     public NavMeshAgent nav;
 
@@ -18,7 +18,8 @@ public class BadGuy : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
 
-        Lscript = camera.GetComponent<Reset>();
+        //Lscript = camera.GetComponent<Reset>();
+        Lscript = FindObjectOfType<Reset>();
     }
 
     // Update is called once per frame
