@@ -17,12 +17,12 @@ public class CameraRotateScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
         yaw += SpeedH * Input.GetAxis("Mouse X");
         pitch -= SpeedV * Input.GetAxis("Mouse Y");
 
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
-    }*/
+    }
 }

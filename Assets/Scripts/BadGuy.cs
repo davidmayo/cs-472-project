@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 public class BadGuy : MonoBehaviour
 {
     Reset Lscript;
-    public GameObject camera;
-    private Transform Player;
-    private NavMeshAgent nav;
+    private GameObject camera;
+    public Transform Player;
+    public NavMeshAgent nav;
 
     // Start is called before the first frame update
     void Start()
