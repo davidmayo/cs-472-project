@@ -24,8 +24,9 @@ public class BadGuy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {//This is so the bad guy is always update on the players location
-        nav.SetDestination(Player.position);
+    {
+        //This is so the bad guy is always update on the players location
+        //nav.SetDestination(Player.position);
     }
 
     private void OnCollisionEnter(Collision col)

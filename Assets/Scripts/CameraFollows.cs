@@ -29,29 +29,29 @@ public class CameraFollows : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameraOffset = transform.position - targetObject.transform.position;
-        offsetX = new Vector3(0, height, distance);
-        offsetY = new Vector3(0, 0, distance);
+        //cameraOffset = transform.position - targetObject.transform.position;
+        //offsetX = new Vector3(0, height, distance);
+        //offsetY = new Vector3(0, 0, distance);
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 newPosition = targetObject.transform.position + cameraOffset;
-        offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * smoothFactor, Vector3.up) * offsetX;
-        offsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * smoothFactor, Vector3.right) * offsetY;
+        //Vector3 newPosition = targetObject.transform.position + cameraOffset;
+        //offsetX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * smoothFactor, Vector3.up) * offsetX;
+        //offsetY = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * smoothFactor, Vector3.right) * offsetY;
 
-        //Slerp treats the vectors as directions rather points in space
-        transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
+        ////Slerp treats the vectors as directions rather points in space
+        //transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
 
-        if (lookAtMe)
-        {
-            transform.LookAt(targetObject);
-        }
+        //if (lookAtMe)
+        //{
+        //    transform.LookAt(targetObject);
+        //}
 
-        /*yaw += SpeedH * Input.GetAxis("Mouse X");
-        pitch -= SpeedV * Input.GetAxis("Mouse Y");
-        targetObject.transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);*/
+        ///*yaw += SpeedH * Input.GetAxis("Mouse X");
+        //pitch -= SpeedV * Input.GetAxis("Mouse Y");
+        //targetObject.transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);*/
 
     }
 }
