@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         // Create the map so that the terrain will look good.
-        //MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
-        //mapGenerator.GenerateMap();
+        MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+        mapGenerator.GenerateMap();
     }
     
 

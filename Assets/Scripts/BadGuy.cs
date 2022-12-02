@@ -31,20 +31,22 @@ public class BadGuy : MonoBehaviour
         if (navMeshAgent.isOnNavMesh)
         {
             Vector3 currentDestination = navMeshAgent.destination;
+            currentDestination.y = 0f;
             Vector3 playerPosition = playerTransform.position;
-
+            playerPosition.y = 0f;
             float distance = Vector3.Distance(currentDestination, playerPosition);
 
-            float threshold = 10f;
+            // Set a threshold so that the pathfinding doesn't update if the player isn't moving
+            float threshold = .1f;
             if (distance > threshold)
             {
                 navMeshAgent.SetDestination(playerTransform.position);
-                Debug.Log($"SETTING DESTINATION Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} > threshold={threshold}");
+                //Debug.Log($"SETTING DESTINATION Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} > threshold={threshold}");
 
             }
             else
             {
-                Debug.Log($"Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} < threshold={threshold}");
+                //Debug.Log($"Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} < threshold={threshold}");
             }
         }
         else
@@ -68,7 +70,7 @@ public class BadGuy : MonoBehaviour
             {
                 message += $"\tSamplePosition() was false. hit={hit}";
             }
-            Debug.Log(message);
+            //Debug.Log(message);
 
             //// Manually force the y value to collide with the terrain
             //RaycastHit raycastHit;
