@@ -23,7 +23,7 @@ public class BadGuy : MonoBehaviour
         //navMeshAgent = GetComponent<NavMeshAgent>();
 
         //Lscript = camera.GetComponent<Reset>();
-        //Lscript = FindObjectOfType<Reset>();
+        Lscript = FindObjectOfType<Reset>();
     }
 
     void Update()
@@ -93,12 +93,12 @@ public class BadGuy : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        //if (col.gameObject.tag == "Player")
-        //{
-        //    Lscript.LoadGameOver();
-        //    Debug.Log("Inside condition");
-        //
-        //}
-        //Debug.Log("Outside condition");
+        if (col.gameObject.tag == "Player")
+        {
+            Lscript.LoadGameOver();
+            Debug.Log("Inside condition");
+        
+        }
+        Debug.Log("Outside condition");
     }
 }
