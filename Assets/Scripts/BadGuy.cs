@@ -28,7 +28,7 @@ public class BadGuy : MonoBehaviour
 
     void Update()
     {
-        if (navMeshAgent.isOnNavMesh)
+        if (navMeshAgent.isOnNavMesh && !navMeshAgent.isStopped)
         {
             Vector3 currentDestination = navMeshAgent.destination;
             currentDestination.y = 0f;
