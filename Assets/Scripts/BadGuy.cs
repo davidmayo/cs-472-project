@@ -23,19 +23,29 @@ public class BadGuy : MonoBehaviour
         //navMeshAgent = GetComponent<NavMeshAgent>();
 
         //Lscript = camera.GetComponent<Reset>();
-        Lscript = FindObjectOfType<Reset>();
+        //Lscript = FindObjectOfType<Reset>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //This is so the bad guy is always update on the players location
         if (navMeshAgent.isOnNavMesh)
         {
-            //Debug.Log($"Bad Guy IS on NavMesh pos={this.transform.position}");
+            Vector3 currentDestination = navMeshAgent.destination;
+            Vector3 playerPosition = playerTransform.position;
 
-            navMeshAgent.destination = playerTransform.position;
-            Debug.Log($"Bad Guy IS on NavMesh pos={this.transform.position}\tSetting target to {playerTransform.position}\tdest={navMeshAgent.destination}");
+            float distance = Vector3.Distance(currentDestination, playerPosition);
+
+            float threshold = 10f;
+            if (distance > threshold)
+            {
+                navMeshAgent.SetDestination(playerTransform.position);
+                Debug.Log($"SETTING DESTINATION Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} > threshold={threshold}");
+
+            }
+            else
+            {
+                Debug.Log($"Current target is {currentDestination}\tPlayer pos is {playerPosition}\tDistance={distance} < threshold={threshold}");
+            }
         }
         else
         {
@@ -51,6 +61,8 @@ public class BadGuy : MonoBehaviour
             {
                 message += $"\tTELEPORTING to {hit.position}";
                 navMeshAgent.Warp(hit.position);
+
+                navMeshAgent.SetDestination(playerTransform.position);
             }
             else
             {
@@ -79,14 +91,12 @@ public class BadGuy : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player")
-        {
-            Lscript.LoadGameOver();
-            Debug.Log("Inside condition");
-
-        }
-        Debug.Log("Outside condition");
+        //if (col.gameObject.tag == "Player")
+        //{
+        //    Lscript.LoadGameOver();
+        //    Debug.Log("Inside condition");
+        //
+        //}
+        //Debug.Log("Outside condition");
     }
 }
-
-// This is a Mayo comment
