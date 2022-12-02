@@ -5,14 +5,18 @@ using UnityEngine;
 public class ThirdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 10.0f;
-    public float rotationSpeed = 0.5f;
-    
-    private Camera _camera;
+    public float speed;
+    public float rotationSpeed;
+    public float gravityAcceleration = -9.8f;
+    public Transform groundCheck;
+    public LayerMask terrainMask;
+
+    private Vector3 verticalVelocity;
+    private bool isGrounded = false;
 
     void Start()
     {
-        _camera = FindObjectOfType<Camera>();
+        verticalVelocity = Vector3.zero;
     }
 
     void Update()
@@ -21,32 +25,40 @@ public class ThirdPersonMovement : MonoBehaviour
         //float horizontal = 0.0f;
         float verticalInputMagnitude = Input.GetAxisRaw("Vertical");
 
-        // First, rotate the player left or right
+        // First, rotate the player left or right, if input is non-zero
         if (Mathf.Abs(horizontalInputMagnitude) > 0.1f)
         {
             // Rotate the player
-            this.transform.RotateAround(Vector3.up, horizontalInputMagnitude * rotationSpeed * Time.deltaTime);
+            transform.RotateAround(Vector3.up, horizontalInputMagnitude * rotationSpeed * Time.deltaTime);
         }
 
-        
-        // Get camera look direction in XZ plane
-        Vector3 cameraForward = _camera.transform.forward;
-        cameraForward.y = 0;
-        cameraForward = cameraForward.normalized;
+        // Get direction player is facing in XZ plane (Y component = 0)
+        Vector3 forwardVector = this.transform.forward;
+        forwardVector.y = 0;
+        forwardVector = forwardVector.normalized;
 
-        // Travel vector is camera forward, scaled by input magnitude
-        Vector3 travelVector = cameraForward * verticalInputMagnitude;
+        // Travel vector is forward, scaled by input magnitude
+        Vector3 travelVector = forwardVector * verticalInputMagnitude;
 
-        
-
+        // Move, if magnitude is non-zero
         if (travelVector.magnitude >= 0.1f)
         {
             controller.Move(travelVector * speed * Time.deltaTime);
         }
+    }
 
-        
-
-        //direction = GetComponent<Camera>().transform.forward.normalized;
-
+    private void FixedUpdate()
+    {
+        // Handle gravity
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, terrainMask);
+        if (isGrounded)
+        {
+            verticalVelocity.y = 0f;
+        }
+        else
+        {
+            verticalVelocity.y = verticalVelocity.y + gravityAcceleration * Time.fixedDeltaTime;
+            controller.Move(verticalVelocity * Time.fixedDeltaTime);
+        }
     }
 }
